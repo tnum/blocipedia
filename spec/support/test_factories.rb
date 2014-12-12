@@ -14,7 +14,9 @@ def fill_out_incorrect_credentials
     fill_in('Name', :with => 'John Smith')
     fill_in('Email', :with => 'john@example.com')
     fill_in('Password', :with => 'helloworld')
-    fill_in('Password confirmation', :with => 'heloworld')
+    fill_in('Password confirmation', :with => '')
     click_button('Sign up')
   end
 end
+
+
