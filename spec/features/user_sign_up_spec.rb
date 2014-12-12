@@ -5,7 +5,7 @@ feature 'User signs up' do
   scenario 'successfully' do
     visit('/users/sign_up')
     fill_out_credentials
-    expect(page).to have_content("Welcome! You have signed up successfully")
+    expect(page).to have_content("A message with a confirmation link has been sent to your email address.")
   end
 
   # invalid sign up
