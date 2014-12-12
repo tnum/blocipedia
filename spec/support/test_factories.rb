@@ -1,4 +1,3 @@
-
 def fill_out_credentials
   within 'form' do
     fill_in('Name', :with => 'John Smith')
@@ -8,6 +7,7 @@ def fill_out_credentials
     click_button('Sign up')
   end
 end
+
 
 def fill_out_incorrect_credentials
   within 'form' do

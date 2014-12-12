@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-feature 'User sign up' do
+feature 'User signs up' do
 
   scenario 'successfully' do
     visit('/users/sign_up')
     fill_out_credentials
-    expect(page).to have_content("Welcome! You have signed up successfully.")
+    expect(page).to have_content("Welcome! You have signed up successfully")
   end
 
   # invalid sign up

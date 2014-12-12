@@ -18,6 +18,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'capybara'
   gem 'rspec-given'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'database_cleaner'
 end
 
 # Use sqlite3 as the database for Active Record
