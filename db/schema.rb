@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20141212233708) do
+=======
+ActiveRecord::Schema.define(version: 20141227161633) do
+>>>>>>> wiki_crud
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -39,7 +43,11 @@ ActiveRecord::Schema.define(version: 20141212233708) do
   create_table "wikis", force: true do |t|
     t.string   "title"
     t.text     "body"
+<<<<<<< HEAD
     t.boolean  "private",    default: false
+=======
+    t.boolean  "private"
+>>>>>>> wiki_crud
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

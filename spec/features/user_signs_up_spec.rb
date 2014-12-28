@@ -3,7 +3,8 @@ require 'rails_helper'
 feature 'User signs up' do
 
   scenario 'successfully' do
-    visit('/users/sign_up')
+    visit('/')
+    click_link 'Sign up'
     fill_out_credentials
     expect(page).to have_content("A message with a confirmation link has been sent to your email address.")
   end
@@ -11,7 +12,8 @@ feature 'User signs up' do
   # invalid sign up
 
   scenario 'unsuccessfully' do
-    visit('/users/sign_up')
+    visit('/')
+    click_link 'Sign up'
     fill_out_incorrect_credentials
     expect(page).to have_content("error")
   end
