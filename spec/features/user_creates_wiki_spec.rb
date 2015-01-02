@@ -25,10 +25,24 @@ feature 'User creates wiki' do
     end
   end
 
-  scenario 'can delete the entry' do
+  scenario 'then can delete the entry' do
     create_new_wiki
     click_link("My New Wiki")
     expect(page).to have_content("delete")
+  end
+
+  scenario 'can not update the entry once logged out' do
+    create_new_wiki
+    sign_out
+    within('.wiki-index') do
+      expect(page).to_not have_content('edit')
+    end
+  end
+
+  scenario 'unsuccessfully without an accout' do
+    sign_out
+    visit( '/wikis/new' )
+    expect(current_path).to eq('/')
   end
   
 end

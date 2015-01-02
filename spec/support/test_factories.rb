@@ -32,6 +32,13 @@ def fill_in_credentials
   end
 end
 
+def sign_out
+  within 'nav' do
+    click_link( 'Log out' )
+  end
+  visit('/')
+end
+
 def create_new_wiki
   click_on( 'New wiki post' )
   within 'form' do

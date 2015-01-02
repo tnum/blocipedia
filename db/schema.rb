@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20141212233708) do
-=======
-ActiveRecord::Schema.define(version: 20141227161633) do
->>>>>>> wiki_crud
+ActiveRecord::Schema.define(version: 20141228211011) do
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -35,6 +31,7 @@ ActiveRecord::Schema.define(version: 20141227161633) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -43,11 +40,7 @@ ActiveRecord::Schema.define(version: 20141227161633) do
   create_table "wikis", force: true do |t|
     t.string   "title"
     t.text     "body"
-<<<<<<< HEAD
-    t.boolean  "private",    default: false
-=======
     t.boolean  "private"
->>>>>>> wiki_crud
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
