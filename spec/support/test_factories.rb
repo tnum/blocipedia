@@ -54,6 +54,12 @@ def create_new_wiki
       click_on( 'Save' )
     end
   end
+
+  def click_on_upgrade_link
+    within 'nav' do
+      click_on( 'Upgrade' )
+    end
+  end
   
 end
 

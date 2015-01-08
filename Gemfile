@@ -20,6 +20,10 @@ group :development, :test do
   gem 'rspec-given'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
+  gem 'poltergeist'
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
+  gem 'selenium-webdriver', '~> 2.44.0'
+  gem 'launchy'
 end
 
 # Use sqlite3 as the database for Active Record
@@ -64,3 +68,4 @@ gem 'pundit'
 
 gem 'faker'
 
+gem 'stripe'

@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'wikis#index'
 
+  resources :charges
+
 end

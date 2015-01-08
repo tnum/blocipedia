@@ -35,5 +35,15 @@ admin = User.new(
 admin.skip_confirmation!
 admin.save
 
+# Create a standard user
+standard = User.new(
+  name:     'Admin Standard',
+  email:    'standard@example.com',
+  password: 'helloworld',
+  role:     'standard'
+)
+standard.skip_confirmation!
+standard.save
+
 
 
