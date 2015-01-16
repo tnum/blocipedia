@@ -1,0 +1,12 @@
+<h1>Welcome to Blocipedia</h1>
+
+<%= @wikis.each do |wiki| %>
+  
+  <div class="wiki-index">
+    <%= link_to wiki.title, wiki_path(wiki.id) %>
+    <% if policy(wiki).update? %>
+      <span class="edit"><%= link_to "edit", edit_wiki_path(wiki.id) %></span>
+    <% end %>
+  </div>
+
+<% end %>

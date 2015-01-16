@@ -8,6 +8,23 @@
 </head>
 <body>
 
+  <nav>
+    <% if current_user %>
+      <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+      <%= link_to "New wiki post", new_wiki_path %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path %> | <%= link_to "Sign in", new_user_session_path %>
+    <% end %>
+  </nav>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% elsif flash[:alert] %>
+  <p class="alert"><%= flash[:alert] %></p>
+<% elsif flash[:error] %>
+  <p class="error"><%= flash[:error] %></p>
+<% end %>
+
 <%= yield %>
 
 </body>
