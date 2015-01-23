@@ -63,3 +63,24 @@ def create_new_wiki
   
 end
 
+def select_upgrade
+  visit('/')
+  click_link('Upgrade')
+end
+
+def fill_in_card_details
+  within('form') do
+    fill_in( 'card_number', with: '5555555555554444' )
+    fill_in( 'cvc', with: '424' )
+    fill_in( 'expmonth', with: '07' )
+    fill_in( 'expyear', with: '17' )
+    click_button( 'submit' )
+  end
+end
+
+def upgrade_account
+  @user.role = :premium
+  @user.save
+  visit('/')
+end
+

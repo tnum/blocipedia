@@ -34,6 +34,11 @@ class ChargesController < ApplicationController
 
  def new
 
+  if current_user.role == 'premium'
+    redirect_to root_path
+    flash[:error] = "You are already a premium member"
+  end
+
    @stripe_btn_data = {
      key: "#{ Rails.configuration.stripe[:publishable_key] }",
      description: "Blocipedia Membership - #{current_user.name}",
