@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :wikis
-
   devise_for :users
+
+  resources :wikis
+  resources :users, only:[:update, :show]
+
   root to: 'wikis#index'
 
   resources :charges, only: [:new, :create]

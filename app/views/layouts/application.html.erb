@@ -12,6 +12,7 @@
     <% if current_user %>
       <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
       <%= link_to "New wiki post", new_wiki_path %>
+      Hello <%= link_to (current_user.name || current_user.email), current_user %>!
       <%= current_user.role %>
     <% else %>
       <%= link_to "Sign up", new_user_registration_path %> | <%= link_to "Sign in", new_user_session_path %>

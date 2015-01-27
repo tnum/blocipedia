@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     role == 'admin'
   end
 
+  def renewal_inactive?
+    role == 'premium'
+    (self.premium_end_date) > 1.month.ago
+  end
 
   private
 

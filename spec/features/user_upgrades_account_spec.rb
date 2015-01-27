@@ -16,16 +16,17 @@ feature 'User upgrades account' do
     expect(page).to have_content('premium')
   end
 
-  scenario 'for a year' do
-    # user who upgraded 11 months ago
-    # gets reminder to upgrade account for next year
-  end
-
   scenario 'can not make payment once premium' do
     upgrade_account
     visit('/charges/new')
     expect(current_path).to eq(root_path)
     expect(page).to have_content('You are already a premium member')
+  end
+
+  scenario 'for a year' do
+    upgrade_account
+    visit_account_profile
+    expect(page).to have_content('Premium member until:')
   end
 
   scenario 'is downgraded if their membership expires' do

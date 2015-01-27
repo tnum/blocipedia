@@ -84,3 +84,8 @@ def upgrade_account
   visit('/')
 end
 
+def visit_account_profile
+  visit('/')
+  click_link 'John Doe'
+end
+
