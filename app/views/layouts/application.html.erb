@@ -6,14 +6,19 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body data-no-turbolink\>
 
   <nav>
     <% if current_user %>
       <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
       <%= link_to "New wiki post", new_wiki_path %>
+      <%= current_user.role %>
     <% else %>
       <%= link_to "Sign up", new_user_registration_path %> | <%= link_to "Sign in", new_user_session_path %>
+    <% end %>
+
+    <% if current_user && current_user.standard? %>
+      <%= link_to "Upgrade", new_charge_path %>
     <% end %>
   </nav>
 
