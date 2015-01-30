@@ -55,4 +55,14 @@ standard2 = User.new(
 standard2.skip_confirmation!
 standard2.save
 
+# Create my user
+teenum = User.new(
+  name:     'teenum',
+  email:    'teenum@susumu.co.uk',
+  password: 'helloworld',
+  role:     'standard'
+)
+teenum.skip_confirmation!
+teenum.save
+
 
