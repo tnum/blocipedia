@@ -46,21 +46,40 @@ def create_new_wiki
     fill_in( 'Body', with: 'Welcome to my new wiki entry' )
     click_on( 'Save' )
   end
+end
 
-  def create_wiki_without_title
-    click_on( 'New wiki post' )
-    within 'form' do
-      fill_in( 'Body', with: 'Welcome to my new wiki entry' )
-      click_on( 'Save' )
-    end
+def create_wiki_without_title
+  click_on( 'New wiki post' )
+  within 'form' do
+    fill_in( 'Body', with: 'Welcome to my new wiki entry' )
+    click_on( 'Save' )
   end
+end
 
-  def click_on_upgrade_link
-    within 'nav' do
-      click_on( 'Upgrade' )
-    end
+def click_on_upgrade_link
+  within 'nav' do
+    click_on( 'Upgrade' )
   end
-  
+end
+
+def edit_wiki
+  click_link('edit')
+  within 'form' do
+    fill_in('Title', with: 'Edited Title')
+    click_on( 'Save' )
+  end
+end
+
+def read_wiki
+  within('.wiki-index') do
+    click_link('MyString')
+  end
+end
+
+def delete_wiki
+  within('.wiki-actions') do
+    click_link('delete')
+  end
 end
 
 def select_upgrade
