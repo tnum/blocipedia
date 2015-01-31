@@ -36,8 +36,8 @@ def premium_user_log_in
   visit( '/' )
   click_link( 'Sign in' )
    within 'form' do
-    fill_in( 'Email', with: @user.email )
-    fill_in( 'Password', with: @user.password )
+    fill_in( 'Email', with: @premium_user.email )
+    fill_in( 'Password', with: @premium_user.password )
     click_on( 'Sign in' )
   end
 end
@@ -77,9 +77,9 @@ def create_wiki_without_title
 end
 
 def create_private_wiki
-  visit( '/wikis/new' )
+  #visit( '/wikis/new' )
   within 'form' do
-    fill_in( 'Title', with: 'My private wiki entry' )
+    fill_in( 'Title', with: 'Private wiki 2' )
     fill_in( 'Body', with: 'Welcome to my new wiki entry' )
     find(:css, "#wiki_is_private").set(true)
     click_on( 'Save' )
@@ -93,7 +93,9 @@ def click_on_upgrade_link
 end
 
 def edit_wiki
-  click_link('edit')
+  within('section.main') do
+    click_link('edit')
+  end
   within 'form' do
     fill_in('Title', with: 'Edited Title')
     click_on( 'Save' )

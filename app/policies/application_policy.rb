@@ -37,5 +37,6 @@ class ApplicationPolicy
   def scope
     record.class
   end
+
 end
 

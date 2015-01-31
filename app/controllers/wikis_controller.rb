@@ -2,10 +2,12 @@ class WikisController < ApplicationController
 
   def index
     @wikis = Wiki.where(is_private: false)
+    @personal_wikis = policy_scope(Wiki)
+    authorize @wikis
   end
 
   def show
-    @wiki =Wiki.find(params[:id])
+    @wiki = Wiki.find(params[:id])
     authorize @wiki
   end
 
@@ -30,6 +32,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    # @wiki = policy_scope(Wiki)
     authorize @wiki
   end
 

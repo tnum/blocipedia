@@ -2,29 +2,23 @@ require 'rails_helper'
 
 feature 'User creates private wikis' do 
   before do
-    @wiki = create(:wiki)
+    @wiki_private = create(:wiki, title: 'My Private Wiki', is_private: true, id: 007 )
+    @wiki_public = create(:wiki, title: 'Public Wiki' )
   end
 
   scenario 'successfully if premium user' do
-    @user = create(:user, role: 'premium')
+    @premium_user = FactoryGirl.create(:user, role: 'premium')
     premium_user_log_in
     click_on( 'New wiki post' )
     expect(page).to have_content('Private wiki')
-
     create_private_wiki
-    expect(page).to have_content('My private wiki entry')
-    visit('/')
-    expect(page).to have_content('My private wiki entry')
-    expect(page).to have_content('MyString')
+    expect(page).to have_content('Private wiki 2')
   end
 
   scenario 'that can not be accessed by visitors' do
-    @user = create(:user, role: 'premium')
-    premium_user_log_in
-    create_private_wiki
-    click_link('Log out')
-    expect(page).to_not have_content('My private wiki entry')
-    expect(page).to have_content('MyString')
+    visit('/')
+    expect(page).to_not have_content('My Private Wiki')
+    expect(page).to have_content('Public Wiki')
   end
 
   scenario 'unsuccessfully if standard user' do

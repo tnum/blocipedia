@@ -10,8 +10,10 @@ feature 'Standard users access' do
   end
 
   scenario 'update public wikis successfully' do
-    within('.wiki-index') do
-      expect(page).to have_link('edit')
+    within('section.main') do
+      within('.wiki-index') do
+        expect(page).to have_link('edit')
+      end
     end
     edit_wiki
     expect(page).to have_content('Edited Title')

@@ -2,4 +2,7 @@
 
 <p><%= @wiki.body %></p>
 <%= @wiki.is_private %>
-<div class="wiki-actions"><%= link_to "delete", [@wiki], method: :delete %></div>
+<div class="wiki-actions">
+  <%= link_to "delete", [@wiki], method: :delete %>
+  <%= link_to "edit", edit_wiki_path %>
+</div>
