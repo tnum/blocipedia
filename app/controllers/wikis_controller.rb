@@ -1,7 +1,8 @@
 class WikisController < ApplicationController
 
   def index
-    @wikis = Wiki.all
+    @wikis = Wiki.where(is_private: false)
+    @private_wikis = Wiki.where(is_private: true)
   end
 
   def show
@@ -20,7 +21,7 @@ class WikisController < ApplicationController
 
     if @wiki.save
       flash[:notice] = "Wiki post saved."
-      redirect_to root_path
+      redirect_to @wiki
     else
       flash[:error] = "Error, wiki post not saved."
       redirect_to new_wiki_path

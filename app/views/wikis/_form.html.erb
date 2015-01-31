@@ -4,6 +4,11 @@
   <%= f.label :body %>
   <%= f.text_area :body %>
 
+  <% if current_user.premium? %>
+    <%= f.label 'Private wiki' %>
+    <%= f.check_box :is_private %>
+  <% end %>
+
   <%= f.submit "Save" %>
 
 <% end %>
