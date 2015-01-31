@@ -1,5 +1,8 @@
 <h1><%= @wiki.title %></h1>
 
 <p><%= @wiki.body %></p>
-
-<div><%= link_to "delete", [@wiki], method: :delete %></div>
+<%= @wiki.is_private %>
+<div class="wiki-actions">
+  <%= link_to "delete", [@wiki], method: :delete %>
+  <%= link_to "edit", edit_wiki_path %>
+</div>

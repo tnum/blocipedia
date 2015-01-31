@@ -1,11 +1,13 @@
 class WikisController < ApplicationController
 
   def index
-    @wikis = Wiki.all
+    @wikis = Wiki.where(is_private: false)
+    @personal_wikis = policy_scope(Wiki)
+    authorize @wikis
   end
 
   def show
-    @wiki =Wiki.find(params[:id])
+    @wiki = Wiki.find(params[:id])
     authorize @wiki
   end
 
@@ -20,7 +22,7 @@ class WikisController < ApplicationController
 
     if @wiki.save
       flash[:notice] = "Wiki post saved."
-      redirect_to root_path
+      redirect_to @wiki
     else
       flash[:error] = "Error, wiki post not saved."
       redirect_to new_wiki_path
@@ -30,6 +32,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    # @wiki = policy_scope(Wiki)
     authorize @wiki
   end
 
@@ -65,5 +68,5 @@ end
 private
 
 def wiki_params
-  params.require(:wiki).permit(:title, :body)
+  params.require(:wiki).permit(:title, :body, :is_private)
 end
