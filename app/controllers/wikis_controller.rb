@@ -2,7 +2,6 @@ class WikisController < ApplicationController
 
   def index
     @wikis = Wiki.where(is_private: false)
-    @private_wikis = Wiki.where(is_private: true)
   end
 
   def show
@@ -66,5 +65,5 @@ end
 private
 
 def wiki_params
-  params.require(:wiki).permit(:title, :body)
+  params.require(:wiki).permit(:title, :body, :is_private)
 end
