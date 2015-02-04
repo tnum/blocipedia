@@ -11,7 +11,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-    user.present? && (@wiki.user == user) || !@wiki.is_private || (user.present? && user.admin?)
+    user.present? && (@wiki.user == user) || user.present? && !@wiki.is_private || (user.present? && user.admin?)
   end
 
   def edit?
