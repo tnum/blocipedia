@@ -19,6 +19,14 @@ feature 'Wiki collaborators' do
     end
   end
 
+  scenario 'can be removed by a premium author successfully' do
+    @wiki = FactoryGirl.create(:wiki, user_id: 1, is_private: true)
+    @collaboration = FactoryGirl.create(:collaborator)
+    premium_user_log_in
+    click_edit_private_wiki_link
+    expect(page).to have_link('Remove collaborator')
+  end
+
   scenario 'can be added by a standard author unsuccessfully' do
     @wiki = FactoryGirl.create(:wiki)
     standard_user_log_in
