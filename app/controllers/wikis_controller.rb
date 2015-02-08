@@ -8,6 +8,7 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
+    @collaborators = @wiki.users
     authorize @wiki
   end
 
@@ -32,6 +33,8 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @users = User.all.select {|user| user != current_user}
+    @collaborators = @wiki.users
     # @wiki = policy_scope(Wiki)
     authorize @wiki
   end

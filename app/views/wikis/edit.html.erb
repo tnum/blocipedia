@@ -1,3 +1,23 @@
 <h1>Edit wiki</h1>
 
 <%= render partial: 'form', locals: { wiki: @wiki } %>
+
+<div class="add-collaborators">
+  <h2>Add Collaborators</h2>
+  <% @users.each do |user| %>
+    <div class="add-collaborator email"><%= user.email %></div>
+    <div class="add-collaborator userid"><%= user.id %></div>
+    <div class="add-collaborator link">
+      <%= link_to "Add as collaborator", wiki_collaborators_path(@wiki, user_id: user.id), method: :post %>
+    </div>
+  <% end %>
+</div>
+
+<div class="current-collaborators">
+  <h2>Current Collaborators</h2>
+  <%= @collaborators.each do |c| %>
+    <div class="collabotator">
+      <%= c.email %>
+    </div>  
+  <% end %>
+</div>

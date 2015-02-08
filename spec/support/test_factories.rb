@@ -59,6 +59,21 @@ def sign_out
   visit('/')
 end
 
+##########   Creating/Editing Wikis   #############
+
+def click_edit_wiki_link
+  visit('/')
+  within('.wiki-index') do
+    find(:css, 'span.edit').should click_link('edit')
+  end
+end
+
+def click_edit_private_wiki_link
+  within('.my-wikis') do
+    find(:css, 'span.edit').should click_link('edit')
+  end
+end
+
 def create_new_wiki
   click_on( 'New wiki post' )
   within 'form' do
@@ -77,18 +92,11 @@ def create_wiki_without_title
 end
 
 def create_private_wiki
-  #visit( '/wikis/new' )
   within 'form' do
     fill_in( 'Title', with: 'Private wiki 2' )
     fill_in( 'Body', with: 'Welcome to my new wiki entry' )
     find(:css, "#wiki_is_private").set(true)
     click_on( 'Save' )
-  end
-end
-
-def click_on_upgrade_link
-  within 'nav' do
-    click_on( 'Upgrade' )
   end
 end
 
@@ -114,9 +122,12 @@ def delete_wiki
   end
 end
 
-def select_upgrade
-  visit('/')
-  click_link('Upgrade')
+##########   Upgrading   #############
+
+def click_on_upgrade_link
+  within 'nav' do
+    click_on( 'Upgrade' )
+  end
 end
 
 def fill_in_card_details

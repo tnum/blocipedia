@@ -2,6 +2,11 @@
 
 <p><%= @wiki.body %></p>
 <%= @wiki.is_private %>
+<%= @collaborators.each do |c| %>
+  <div class="collabotator">
+    <%= c.email %>
+  </div>  
+<% end %>
 <div class="wiki-actions">
   <%= link_to "delete", [@wiki], method: :delete %>
   <%= link_to "edit", edit_wiki_path %>
