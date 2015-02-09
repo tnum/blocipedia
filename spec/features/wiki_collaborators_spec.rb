@@ -46,5 +46,11 @@ feature 'Wiki collaborators' do
     expect(page).to_not have_content('MyString')
   end
 
+  scenario 'can be added to a public wiki unsuccessfully' do
+    @wiki = FactoryGirl.create(:wiki, user_id: 1, is_private: false)
+    premium_user_log_in
+    click_edit_private_wiki_link
+    expect(page).to_not have_content('Add Collaborators')
+  end
   
 end
