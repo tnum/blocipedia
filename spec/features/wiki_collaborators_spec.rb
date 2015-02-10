@@ -41,12 +41,12 @@ feature 'Wiki collaborators' do
     expect(page).to have_content('MyString')
   end
 
-  scenario 'can access a private wiki once removed unsuccessfully' do
+  scenario "can't access a private wiki once removed" do
     standard_user_log_in
     expect(page).to_not have_content('MyString')
   end
 
-  scenario 'can be added to a public wiki unsuccessfully' do
+  scenario "can't be added to a public wiki" do
     @wiki = FactoryGirl.create(:wiki, user_id: 1, is_private: false)
     premium_user_log_in
     click_edit_private_wiki_link
