@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_many :wikis, through: :collaborators
+  has_many :collaborators
   has_many :wikis
 
   # Include default devise modules. Others available are:

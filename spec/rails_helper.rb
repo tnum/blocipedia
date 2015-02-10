@@ -7,6 +7,7 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'factory_girl_rails'
 require 'capybara/poltergeist'
+#require 'pundit/rspec'
 Capybara.javascript_driver = :poltergeist
 
 

@@ -7,7 +7,7 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    true
   end
 
   def show?
@@ -37,5 +37,12 @@ class ApplicationPolicy
   def scope
     record.class
   end
+
+  def can_moderate?(user, record)
+    @user = user
+    @record = record 
+    user.present? && (record.user == user or user.role?(:admin))  
+  end
+
 end
 

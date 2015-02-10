@@ -20,14 +20,17 @@ feature 'User creates wiki' do
 
   scenario 'can then update the entry' do
     create_new_wiki
-    within('.wiki-index') do
-      find(:css, 'span.edit').should have_link('edit')
+    within('.wiki-actions') do
+      expect(page).to have_link('edit')
     end
   end
 
   scenario 'then can delete the entry' do
     create_new_wiki
-    click_link("My New Wiki")
+    visit('/')
+    within('section.main') do
+      click_link("My New Wiki")
+    end
     expect(page).to have_content("delete")
   end
 
