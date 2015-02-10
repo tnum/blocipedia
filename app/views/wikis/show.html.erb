@@ -1,6 +1,6 @@
-<h1><%= @wiki.title %></h1>
+<h1><%= markdown_to_html @wiki.title %></h1>
 
-<p><%= @wiki.body %></p>
+<p><%= markdown_to_html @wiki.body %></p>
 <%= @wiki.is_private %>
 <%= @collaborators.each do |c| %>
   <div class="collabotator">
