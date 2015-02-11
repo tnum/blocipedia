@@ -60,7 +60,7 @@ teenum = User.new(
   name:     'teenum',
   email:    'teenum@susumu.co.uk',
   password: 'helloworld',
-  role:     'premium'
+  role:     'standard'
 )
 teenum.skip_confirmation!
 teenum.save

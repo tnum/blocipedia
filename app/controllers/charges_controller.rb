@@ -1,6 +1,8 @@
 class ChargesController < ApplicationController
   respond_to :html, :js
 
+
+  
   def create
     # Creates a Stripe Customer object, for associating
     # with the charge
@@ -21,9 +23,9 @@ class ChargesController < ApplicationController
 
     current_user.role = :premium
     current_user.save
- 
-    flash[:success] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
+
     redirect_to root_path # or wherever
+    flash[:success] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
  
  # Stripe will send back CardErrors, with friendly messages
  # when something goes wrong.
@@ -45,6 +47,24 @@ class ChargesController < ApplicationController
       description: "Blocipedia Membership - #{current_user.name}",
       amount: 1500
     }
+  end
+
+  def downgrade
+    @user = current_user
+
+    customer = Stripe::Customer.retrieve(
+      id: current_user.stripeid,
+    )
+
+    customer.subscriptions.retrieve(@user.subid).delete
+
+    @user.update_attributes(stripeid: nil, subid: nil)
+
+    current_user.role = :standard
+    current_user.save
+
+    redirect_to root_path # or wherever
+    flash[:success] = "Sorry to see you go"
   end
 
 end
