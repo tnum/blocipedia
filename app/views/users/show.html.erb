@@ -1,0 +1,9 @@
+<h1><%= current_user.name.capitalize %></h1>
+
+<h2><%= current_user.role.capitalize %> Member</h2>
+<p><%= current_user.subid %></p>
+<p><%= current_user.stripeid %></p>
+
+<% if current_user.premium? %>
+  <%= link_to "Cancel Subscription", downgrade_path %>
+<% end %>

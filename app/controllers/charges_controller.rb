@@ -54,10 +54,9 @@ class ChargesController < ApplicationController
   def downgrade
     @user = current_user
 
-    customer = Stripe::Customer.retrieve(
-      id: current_user.stripeid,
-    )
+    Stripe.api_key = "#{ Rails.configuration.stripe[:secret_key] }"
 
+    customer = Stripe::Customer.retrieve(id: @user.stripeid)
     customer.subscriptions.retrieve(@user.subid).delete
 
     @user.update_attributes(stripeid: nil, subid: nil)
