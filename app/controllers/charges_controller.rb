@@ -21,6 +21,8 @@ class ChargesController < ApplicationController
       currency: 'gbp'
     )
 
+    current_user.subid = customer.subscriptions['data'][0].id
+    current_user.stripeid = customer.id
     current_user.role = :premium
     current_user.save
 
