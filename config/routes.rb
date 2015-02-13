@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   resources :charges, only: [:new, :create]
 
+  get 'downgrade' => 'charges#downgrade'
+
 end
