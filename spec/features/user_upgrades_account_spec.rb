@@ -11,7 +11,7 @@ feature 'User upgrades account' do
 
   scenario 'successfully' do
     expect(page).to have_content('standard')
-    select_upgrade
+    click_on_upgrade_link
     upgrade_account
     expect(page).to have_content('premium')
   end

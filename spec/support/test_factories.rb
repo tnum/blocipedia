@@ -32,11 +32,46 @@ def fill_in_credentials
   end
 end
 
+def premium_user_log_in
+  visit( '/' )
+  click_link( 'Sign in' )
+   within 'form' do
+    fill_in( 'Email', with: @premium_user.email )
+    fill_in( 'Password', with: @premium_user.password )
+    click_on( 'Sign in' )
+  end
+end
+
+def standard_user_log_in
+  visit( '/' )
+  click_link( 'Sign in' )
+  within 'form' do
+    fill_in( 'Email', with: @user_standard.email )
+    fill_in( 'Password', with: @user_standard.password )
+    click_on( 'Sign in' )
+  end
+end
+
 def sign_out
   within 'nav' do
     click_link( 'Log out' )
   end
   visit('/')
+end
+
+##########   Creating/Editing Wikis   #############
+
+def click_edit_wiki_link
+  visit('/')
+  within('.wiki-index') do
+    find(:css, 'span.edit').should click_link('edit')
+  end
+end
+
+def click_edit_private_wiki_link
+  within('.my-wikis') do
+    find(:css, 'span.edit').should click_link('edit')
+  end
 end
 
 def create_new_wiki
@@ -56,14 +91,19 @@ def create_wiki_without_title
   end
 end
 
-def click_on_upgrade_link
-  within 'nav' do
-    click_on( 'Upgrade' )
+def create_private_wiki
+  within 'form' do
+    fill_in( 'Title', with: 'Private wiki 2' )
+    fill_in( 'Body', with: 'Welcome to my new wiki entry' )
+    find(:css, "#wiki_is_private").set(true)
+    click_on( 'Save' )
   end
 end
 
 def edit_wiki
-  click_link('edit')
+  within('section.main') do
+    click_link('edit')
+  end
   within 'form' do
     fill_in('Title', with: 'Edited Title')
     click_on( 'Save' )
@@ -82,9 +122,12 @@ def delete_wiki
   end
 end
 
-def select_upgrade
-  visit('/')
-  click_link('Upgrade')
+##########   Upgrading   #############
+
+def click_on_upgrade_link
+  within 'nav' do
+    click_on( 'Upgrade' )
+  end
 end
 
 def fill_in_card_details

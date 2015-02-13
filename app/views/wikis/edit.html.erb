@@ -1,3 +1,28 @@
 <h1>Edit wiki</h1>
 
 <%= render partial: 'form', locals: { wiki: @wiki } %>
+
+<% if @wiki.is_private? %>
+  <div class="current-collaborators">
+    <h2>Current Collaborators</h2>
+    <%= @collaborators.each do |collaborator| %>
+      <div class="collabotator">
+        <%= collaborator.email %>
+        <%= link_to "Remove collaborator", wiki_collaborator_path(@wiki, collaborator), method: :delete %>
+      </div>  
+    <% end %>
+  </div>
+
+  <div class="add-collaborators">
+    <h2>Add Collaborators</h2>
+    <% @users.each do |user| %>
+      <% unless @wiki.users.include?(user) %>
+        <div class="add-collaborator email"><%= user.email %></div>
+        <div class="add-collaborator userid"><%= user.id %></div>
+        <div class="add-collaborator link">
+          <%= link_to "Add as collaborator", wiki_collaborators_path(@wiki, user_id: user.id), method: :post %>
+        </div>
+    <% end %>
+    <% end %>
+  </div>
+<% end %>
