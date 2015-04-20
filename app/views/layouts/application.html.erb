@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Blocipedia</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body data-no-turbolink\>
+  <head>
+    <title>Blocipedia</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body data-no-turbolink\>
+    <header>
+      <nav class="left">
+        <% if current_user %>
+          <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+          <%= link_to "New wiki post", new_wiki_path %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path %> | <%= link_to "Sign in", new_user_session_path %>
+        <% end %>
+        <% if current_user && current_user.standard? %>
+          <%= link_to "Upgrade", new_charge_path %>
+        <% end %>
 
-  <nav>
-    <% if current_user %>
-      <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
-      <%= link_to "New wiki post", new_wiki_path %>
-      <%= current_user.role %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> | <%= link_to "Sign in", new_user_session_path %>
-    <% end %>
+        <% if current_user %>
+          <%= link_to "My Account", current_user %>
+          <p><%= current_user.role %> user accout</p>
+        <% end %>
+      </nav>
+    </header>
 
-    <% if current_user %>
-      <%= link_to "My Account", current_user %>
-    <% end %>
+    <main>
+      <% if flash[:notice] %>
+        <p class="notice"><%= flash[:notice] %></p>
+      <% elsif flash[:alert] %>
+        <p class="alert"><%= flash[:alert] %></p>
+      <% elsif flash[:error] %>
+        <p class="error"><%= flash[:error] %></p>
+      <% end %>
 
-    <% if current_user && current_user.standard? %>
-      <%= link_to "Upgrade", new_charge_path %>
-    <% end %>
+      <%= yield %>
+    </main>
 
-  </nav>
-
-<% if flash[:notice] %>
-  <p class="notice"><%= flash[:notice] %></p>
-<% elsif flash[:alert] %>
-  <p class="alert"><%= flash[:alert] %></p>
-<% elsif flash[:error] %>
-  <p class="error"><%= flash[:error] %></p>
-<% end %>
-
-<%= yield %>
-
-</body>
+  </body>
 </html>

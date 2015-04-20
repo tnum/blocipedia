@@ -2,4 +2,39 @@
 @import "base/base";
 @import "neat";
 
-body { @include outer-container; }
+body { margin: 0; }
+
+h1 { 
+	font-size: 2em; 
+	padding-top: 0.5em;
+}
+
+main,
+header nav { @include outer-container; }
+
+header {
+	background: #222222;
+	nav {
+		padding: 1em;
+		color: #fff; 
+		p { text-align: right; }
+		a {
+			color: #bac4e3;
+  		font-weight: bold;
+  		padding: 0 6px;
+  		&:hover { color: #fff; }
+		}
+	}
+} 
+
+.wiki-index {
+	padding: 6px 0;
+	transition: color 0.3s linear;
+	span.edit {
+		display: block;
+		a { 
+			color: #999;
+			&:hover { color: #477dca; } 
+		}
+	}
+}

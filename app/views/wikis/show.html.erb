@@ -1,12 +1,14 @@
 <h1><%= markdown_to_html @wiki.title %></h1>
 
 <p><%= markdown_to_html @wiki.body %></p>
-<%= @wiki.is_private %>
+<p>Privicy: <%= @wiki.is_private %></p>
+
 <%= @collaborators.each do |c| %>
-  <div class="collabotator">
-    <%= c.email %>
-  </div>  
+	<div class="collabotator">
+  	<%= c.email %>
+	</div>  
 <% end %>
+
 <div class="wiki-actions">
   <%= link_to "delete", [@wiki], method: :delete %>
   <%= link_to "edit", edit_wiki_path %>
